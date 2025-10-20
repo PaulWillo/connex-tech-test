@@ -80,6 +80,30 @@ export const getGetWeatherQueryKey = () => {
   return [`/weather`] as const;
 };
 
+export const getReports = (
+  options?: AxiosRequestConfig
+): Promise<AxiosResponse<GetReports200>> => {
+  return axios.get(`/report`, options);
+};
+
+export const getGetReportsQueryKey = () => {
+  return [`/report`] as const;
+};
+
+export type GetReports200 = {
+  data: GetReports200DataItem[];
+};
+
+export type GetReports200DataItem = {
+  id?: number;
+  agent_id?: number;
+  customer_id?: number;
+  length_seconds?: number;
+  created_at?: string;
+  agent_name?: string;
+  customer_name?: string;
+};
+
 export const getGetWeatherQueryOptions = <
   TData = Awaited<ReturnType<typeof getWeather>>,
   TError = AxiosError<unknown>
@@ -103,6 +127,61 @@ export const getGetWeatherQueryOptions = <
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
+
+export const getGetReportsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getReports>>,
+  TError = AxiosError<unknown>
+>(options?: {
+  query?: Partial<
+    UseQueryOptions<Awaited<ReturnType<typeof getReports>>, TError, TData>
+  >;
+  axios?: AxiosRequestConfig;
+}) => {
+  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetReportsQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReports>>> = ({
+    signal,
+  }) => getReports({ signal, ...axiosOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getReports>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetReportsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReports>>
+>;
+export type GetReportsQueryError = AxiosError<unknown>;
+
+export function useGetReports<
+  TData = Awaited<ReturnType<typeof getReports>>,
+  TError = AxiosError<unknown>
+>(
+  options?: {
+    query?: Partial<
+      UseQueryOptions<Awaited<ReturnType<typeof getReports>>, TError, TData>
+    >;
+    axios?: AxiosRequestConfig;
+  },
+  queryClient?: QueryClient
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+} {
+  const queryOptions = getGetReportsQueryOptions(options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
 
 export type GetWeatherQueryResult = NonNullable<
   Awaited<ReturnType<typeof getWeather>>
@@ -131,6 +210,8 @@ export function useGetWeather<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
+
+
 export function useGetWeather<
   TData = Awaited<ReturnType<typeof getWeather>>,
   TError = AxiosError<unknown>

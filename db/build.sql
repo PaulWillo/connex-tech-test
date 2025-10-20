@@ -1,6 +1,7 @@
 drop table if exists interactions;
 drop table if exists agents;
 drop table if exists customers;
+drop table if exists reports;
 
 create table agents (
     id integer primary key,
@@ -21,6 +22,19 @@ create table interactions (
     foreign key(agent_id) references agents,
     foreign key (customer_id) references customers
 );
+
+create table reports (
+    id integer primary key,
+    agent_id integer,
+    customer_id integer,
+    length_seconds integer,
+    created_at datetime,
+    agent_name text,
+    customer_name text,
+    foreign key(agent_id) references agents(id),
+    foreign key(customer_id) references customers(id)
+);
+
 
 INSERT INTO agents (`name`)
 VALUES
