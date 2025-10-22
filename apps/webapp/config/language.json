@@ -1,0 +1,14 @@
+{
+    "tableHeaders": {
+        "date": "Date",
+        "agent_name": "Agent Name",
+        "agent_id": "Agent ID",
+        "total_interactions": "Total Interactions",
+        "average_interaction_length": "Average Interaction Length (mins)",
+        "search_agent_name": "Search Agent Name"
+    },
+    "reportTable": {
+        "table_header": "Agent Interaction Data",
+        "no_matching_agents": "No matching agents found."
+    }
+}

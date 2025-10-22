@@ -36,7 +36,9 @@ export const GET: Operation = async (req: Request, res: Response) => {
     agent_name: r.agent_name,
     agent_id: r.agent_id,
     total_interactions: parseInt(r.total_interactions),
-    average_interaction_length: parseFloat(r.average_interaction_length)
+    //Currently the data comes back as "98654" this I assume is seconds per interaction
+    //Its worth the backend converting this into minutes for easier consumption
+    average_interaction_length: Math.round(parseFloat(r.average_interaction_length) / 60),
   }));
 
   return res.send({ data });

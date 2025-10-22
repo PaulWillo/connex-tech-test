@@ -25,7 +25,11 @@ export default function Dashboard() {
         >
           <CustomersList />
         </Grid>
-        <ReportList />
+        <Grid size={{
+            xs: "auto"
+          }}>
+          <ReportList />
+        </Grid>
       </Grid>
     </Box>
   );

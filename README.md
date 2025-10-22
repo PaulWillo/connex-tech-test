@@ -30,3 +30,15 @@ https://www.npmjs.com/package/express-openapi
 https://orval.dev/overview
 https://mui.com/material-ui/getting-started/
 https://sequelize.org/docs/v6/
+
+# Docker
+
+You can run the frontend of this project via docker
+
+You may need to run `npx nx build webbapp` for the index.html to be generated
+
+`docker build -t my-react-app .`
+
+Then
+
+`docker run -p 8080:80 my-react-app`
