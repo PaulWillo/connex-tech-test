@@ -4,13 +4,12 @@ import AppTheme from '../theme/AppTheme';
 import { LanguageProvider } from '../components/Context';
 
 export function App() {
-
   return (
     <AppTheme>
       <LanguageProvider>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+        </Routes>
       </LanguageProvider>
     </AppTheme>
   );

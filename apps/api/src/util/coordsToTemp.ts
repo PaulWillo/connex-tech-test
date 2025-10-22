@@ -16,7 +16,10 @@ const tempCache = new Map<string, number>();
 // My thinking here is due to my Promise.all() running in parrallel on every request, if there are multiple requests for the same coords
 // before the first one has resolved, it would make multiple API calls for the same coords. So I have a simple in-memory cache
 // to store previously fetched temps for coords.
-export const coordsToTemp = async (lat: number, long: number): Promise<number> => {
+export const coordsToTemp = async (
+  lat: number,
+  long: number
+): Promise<number> => {
   const key = `${lat},${long}`;
 
   //Does the key already exist? if so just return the same data

@@ -20,9 +20,8 @@ describe('App', () => {
       </BrowserRouter>
     );
     expect(
-      getAllByText(
-        new RegExp('Welcome @connex-tech-test/webapp', 'gi')
-      ).length > 0
+      getAllByText(new RegExp('Welcome @connex-tech-test/webapp', 'gi'))
+        .length > 0
     ).toBeTruthy();
   });
 });

@@ -13,7 +13,6 @@ import { coordsToTemp } from '../util/coordsToTemp';
 //   return res.send({ data: result });
 // };
 
-
 export const GET: Operation = async (req: Request, res: Response) => {
   try {
     const result = await Promise.all(

@@ -211,7 +211,6 @@ export function useGetWeather<
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 
-
 export function useGetWeather<
   TData = Awaited<ReturnType<typeof getWeather>>,
   TError = AxiosError<unknown>

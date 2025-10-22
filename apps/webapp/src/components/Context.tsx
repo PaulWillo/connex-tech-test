@@ -1,5 +1,5 @@
-import { createContext, useContext, ReactNode } from "react";
-import language from "../../../webapp/config/language.json"
+import { createContext, useContext, ReactNode } from 'react';
+import language from '../../../webapp/config/language.json';
 
 export const LanguageContext = createContext(language);
 
