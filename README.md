@@ -33,7 +33,7 @@ https://sequelize.org/docs/v6/
 
 # Docker
 
-You can run the frontend of this project via docker
+You can run the frontend of this project via docker, due to time restrictions I didnt get round to the backend side, therefore you will still need to run that seperatly 
 
 You may need to run `npx nx build webbapp` for the index.html to be generated
 
